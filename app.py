@@ -1,73 +1,94 @@
 import os
 
-alunas = []
+alunas = [{'nome':'vizmery', 'categoria':'estetica', 'ativo':True},
+             {'nome':'romildo', 'categoria':'saude','ativo':True},
+             {'nome':'geovana', 'categoria':'aluna','ativo':False},
+             {'nome':'bixa', 'categoria':'Livre', 'ativo':True}]
+
+def exbir_subtitulo(texto):
+    os.system('cls')
+    print(texto)
+    print('')
+
+def retorna_menu_principal():
+    input('\n Digite uma tecla para voltar ao menu principal')
+    main()
 
 
 def mostra_titulo():
     print('''
-            
+           
         ██╗░░░██╗███████╗  ░██████╗████████╗██╗░░░██╗██████╗░██╗░█████╗░
         ██║░░░██║╚════██║  ██╔════╝╚══██╔══╝██║░░░██║██╔══██╗██║██╔══██╗
         ╚██╗░██╔╝░░███╔═╝  ╚█████╗░░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
         ░╚████╔╝░██╔══╝░░  ░╚═══██╗░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
         ░░╚██╔╝░░███████╗  ██████╔╝░░░██║░░░╚██████╔╝██████╔╝██║╚█████╔╝
         ░░░╚═╝░░░╚══════╝  ╚═════╝░░░░╚═╝░░░░╚═════╝░╚═════╝░╚═╝░╚════╝░
-            
+           
      ''')
-    
-def mostra_escolha():
-    print('1. Cadastro de alunas curso de auto maquiagem')
-    print('2. Listar alunas')
-    print('3. Ativar alunas')
+
+
+
+
+def mostra_escolhas():
+    print('1. Cadastro de aluna')
+    print('2. Listar aluna')
+    print('3. Ativar aluna')
     print('4. Sair da aplicação')
 
 def escolhe_opcao():
     try:
         opcao_escolhida = int(input('Escolha uma opção: '))
-        print('Voce escolheu a opção: ' , opcao_escolhida)
+        print('Você escolheu a opção: ', opcao_escolhida)
 
         if opcao_escolhida == 1:
-            cadastrar_alunas()
+            cadastrar_aluna()
         elif opcao_escolhida == 2:
-            print('Listar alunas')
-        elif opcao_escolhida == 3:
-            print('Ativar alunas')
+            mostrar_aluna()
+        elif  opcao_escolhida == 3:
+            print('Ativar/desativar aluna')
         elif opcao_escolhida == 4:
             finalizar_programa()
         else:
             opcao_invalida()
     except:
-      opcao_invalida()
+        opcao_invalida()
 
-def cadastrar_alunas():
-      os.system('cls')
-      print('cadastrando alunas')
-      nome_aluna = input('digite o nome da aluna')
-      alunas.append(nome_aluna)
-      print(f'{nome_aluna} foi adicionada as alunas do curso' )
-      input('digite qualquer tecla para voltar')
-      main()
+def cadastrar_aluna():
+    exbir_subtitulo('Cadastrar aluna')
 
-def mostrar_alunas():
-    os.system('cls')
-    print('lista de alunas')
-    for aluna in alunas:
-        print(f' - (nome_alunas)')
+    nome_aluna = input('Digite o nome da aluna: ')
+    categoria = input(f'qual o curso {nome_aluna} prefere')
+    dados_aluna = {'nome': nome_aluna, 'categoria':categoria, 'ativo':True}
+    alunas.append(dados_aluna)
+    print(f'{nome_aluna} foi adicionada a aluna')
 
+    retorna_menu_principal()
+
+def mostrar_aluna():
+    exbir_subtitulo('Listar aluna')
+
+    for aluna in aluna:
+        nome_aluna = aluna['nome']
+        categoria = alunas ['categoria']
+        ativo = aluna['ativo']
+        print(f' - {nome_aluna} | {categoria} | {ativo}')
+    
+    
+    retorna_menu_principal()
 
 
 def finalizar_programa():
     os.system('cls')
-    print('finalizando_programa')
-    
+    print('Finalizando programa')
+
 def opcao_invalida():
-    print('Esse carter nao e permitido')
-    input('digite qualquer tecla')
-       
+    print('Esse caracter não é permitido')
+    retorna_menu_principal()
 
 def main():
-    mostra_titulo()  
-    mostra_escolha()
+    mostra_titulo()
+    mostra_escolhas()
     escolhe_opcao()
 
 if __name__ == '__main__':
